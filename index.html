@@ -30,7 +30,7 @@
 		//setup: server url, user, password
 		function draw() {
 			var config = {
-				// container_id: "viz",
+				container_id: "viz",
 				server_url: "bolt://3.86.7.95:7687",
 				server_user: "neo4j",
 				server_password: "neo4j",
@@ -49,13 +49,13 @@
 					},
 					"subClassOf":{
 						"id": "id"
+					},
+					"INTERACTS": {
+						"thickness": "weight",
+						"caption": false
 					}
-					// "INTERACTS": {
-					// 	"thickness": "weight",
-					// 	"caption": false
-					// }
 				},
-				initial_cypher: "MATCH (n)-[r:INTERACTS]->(m) RETURN n,r,m"
+				initial_cypher: "MATCH (n)-[r]->(m) RETURN n,r,m"
 			};
 
 			viz = new NeoVis.default(config);
