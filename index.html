@@ -36,7 +36,8 @@
 				server_password: "neo4j",
 				labels: {
 					"Category": {
-						"caption": "title"
+						"caption": "title",
+						"sizeCypher": "MATCH (n) WHERE id(n)=$id RETURN CASE n.parents WHEN '***' THEN 10 ELSE 5 END;"
 					},
 					"符文": {
 						"caption": "title"
