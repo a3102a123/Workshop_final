@@ -35,24 +35,92 @@
 				server_user: "neo4j",
 				server_password: "neo4j",
 				labels: {
-					"UNIQUE IMPORT LABEL": {
-						"id": "id",
-						"title": "title",
-						"url": "url",
-						"categories": "categories",
-						"parents": "parents"
-					}
+					"Category": {
+						"caption": "title"
+					},
+					"符文": {
+						"caption": "title"
+					},
+					"騎士": {
+						"caption": "title"
+					},
+					"龍": {
+						"caption": "title"
+					},
+					"荒野": {
+						"caption": "title"
+					},
+					"領主": {
+						"caption": "title"
+					},
+					"主教": {
+						"caption": "title"
+					},
+					"封建領地": {
+						"caption": "title"
+					},
+					"魔法師": {
+						"caption": "title"
+					},
+					"城市": {
+						"caption": "title"
+					},
+					"旅店老闆": {
+						"caption": "title"
+					},
+					"傳教士": {
+						"caption": "title"
+					},
+					"精靈": {
+						"caption": "title"
+					},
+					"神器": {
+						"caption": "title"
+					},
+					"詠唱魔法": {
+						"caption": "title"
+					},
+					"罪犯": {
+						"caption": "title"
+					},
+					"神": {
+						"caption": "title"
+					},
+					"魔法道具": {
+						"caption": "title"
+					},
+					"教宗": {
+						"caption": "title"
+					},
+					"鐵匠": {
+						"caption": "title"
+					},
+					"傭兵": {
+						"caption": "title"
+					},
+					"商人": {
+						"caption": "title"
+					},
+					"旅行商人": {
+						"caption": "title"
+					},
+					"神代": {
+						"caption": "title"
+					},
+					"當代": {
+						"caption": "title"
+					},
+					"上古時代": {
+						"caption": "title"
+					},
+
 				},
 				relationships: {
 					"ObjectOneOf":{
-						"id": "id"
+						// "caption": false
 					},
 					"subClassOf":{
-						"id": "id"
-					},
-					"INTERACTS": {
-						"thickness": "weight",
-						"caption": false
+						// "id": "id"
 					}
 				},
 				initial_cypher: "MATCH (n)-[r]->(m) RETURN n,r,m"
