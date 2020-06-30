@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Neovis.js Simple Example</title>
+	<style type="text/css">
+		html,
+		body {
+			font: 16pt arial;
+		}
+
+		#viz {
+			width: 900px;
+			height: 700px;
+			border: 1px solid lightgray;
+			font: 22pt arial;
+		}
+	</style>
+
+	<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+
+		var viz;
+
+		//setup: server url, user, password
+		function draw() {
+			var config = {
+				// container_id: "viz",
+				server_url: "bolt://3.86.7.95:7687",
+				server_user: "neo4j",
+				server_password: "neo4j",
+				labels: {
+					"UNIQUE IMPORT LABEL": {
+						"id": "id",
+						"title": "title",
+						"url": "url",
+						"categories": "categories",
+						"parents": "parents"
+					}
+				},
+				relationships: {
+					"ObjectOneOf":{
+						"id": "id"
+					},
+					"subClassOf":{
+						"id": "id"
+					}
+					// "INTERACTS": {
+					// 	"thickness": "weight",
+					// 	"caption": false
+					// }
+				},
+				initial_cypher: "MATCH (n)-[r:INTERACTS]->(m) RETURN n,r,m"
+			};
+
+			viz = new NeoVis.default(config);
+			viz.registerOnEvent("completed", (e) => {
+				viz["_network"].on("click", (event) => {
+					var node = event.nodes[0];
+					if (node)
+						var url = viz["_nodes"][node].title.split("<strong>url:</strong> ")[1].split("<br>")[0];
+					if (url) {
+						window.open(url);
+					}
+				});
+
+			});
+			viz.render();
+			console.log(viz);
+		}
+	</script>
+</head>
+
+<body onload="draw()">
+	<div id="viz"></div>
+	<input type="submit" value="Stabilize" id="stabilize">
+	<input type="submit" value="Reset" id="reload">
+</body>
+
+<script>
+	$("#reload").click(function () {
+		viz.reload();
+	});
+
+	$("#stabilize").click(function () {
+		viz.stabilize();
+	})
+
+</script>
+
+</html>
